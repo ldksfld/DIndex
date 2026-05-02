@@ -1,0 +1,129 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="Nav.Dashboard">Дашборд</sys:String>
+    <sys:String x:Key="Nav.Search">Пошук</sys:String>
+    <sys:String x:Key="Nav.Records">Записи</sys:String>
+    <sys:String x:Key="Nav.Import">Імпорт</sys:String>
+    <sys:String x:Key="Nav.Log">Журнал</sys:String>
+    <sys:String x:Key="Nav.Snapshot">Snapshot</sys:String>
+    <sys:String x:Key="Nav.Benchmark">Аналіз</sys:String>
+
+    <sys:String x:Key="App.Title">D-Index</sys:String>
+
+    <sys:String x:Key="Dashboard.Title">Дашборд</sys:String>
+    <sys:String x:Key="Dashboard.TotalRecords">Всього записів</sys:String>
+    <sys:String x:Key="Dashboard.ActiveRecords">Активних записів</sys:String>
+    <sys:String x:Key="Dashboard.IndexSize">Розмір індексу (МБ)</sys:String>
+    <sys:String x:Key="Dashboard.LastSearch">Останній пошук (мс)</sys:String>
+    <sys:String x:Key="Dashboard.QuickAdd">Новий запис</sys:String>
+    <sys:String x:Key="Dashboard.QuickSearch">Пошук</sys:String>
+    <sys:String x:Key="Dashboard.QuickSnapshot">Зберегти Snapshot</sys:String>
+
+    <sys:String x:Key="Search.Title">Пошук записів</sys:String>
+    <sys:String x:Key="Search.ById">За ідентифікатором</sys:String>
+    <sys:String x:Key="Search.ByRange">За діапазоном</sys:String>
+    <sys:String x:Key="Search.ByKey">За ключем (префікс)</sys:String>
+    <sys:String x:Key="Search.Id">Ідентифікатор</sys:String>
+    <sys:String x:Key="Search.From">Від</sys:String>
+    <sys:String x:Key="Search.To">До</sys:String>
+    <sys:String x:Key="Search.KeyPrefix">Префікс ключа</sys:String>
+    <sys:String x:Key="Search.Button">Знайти</sys:String>
+    <sys:String x:Key="Search.NotFound">Записів не знайдено</sys:String>
+    <sys:String x:Key="Search.Time">Час виконання:</sys:String>
+    <sys:String x:Key="Search.Results">Результати</sys:String>
+    <sys:String x:Key="Search.ColId">Id</sys:String>
+    <sys:String x:Key="Search.ColKey">Ключ</sys:String>
+    <sys:String x:Key="Search.ColData">Дані</sys:String>
+    <sys:String x:Key="Search.ColTime">Час</sys:String>
+    <sys:String x:Key="Search.ColStatus">Статус</sys:String>
+    <sys:String x:Key="Search.Delete">Видалити</sys:String>
+
+    <sys:String x:Key="Records.Title">Управління записами</sys:String>
+    <sys:String x:Key="Records.AddNew">Додати запис</sys:String>
+    <sys:String x:Key="Records.Id">Ідентифікатор (auto або число)</sys:String>
+    <sys:String x:Key="Records.Key">Ключ (Email/IP/Username, до 64 байт)</sys:String>
+    <sys:String x:Key="Records.Data">Дані (до 128 байт)</sys:String>
+    <sys:String x:Key="Records.Add">Додати</sys:String>
+    <sys:String x:Key="Records.Delete">Видалити вибрані</sys:String>
+    <sys:String x:Key="Records.ClearAll">Очистити всі</sys:String>
+    <sys:String x:Key="Records.Update">Оновити</sys:String>
+    <sys:String x:Key="Records.Validation.IdRequired">Введіть Id або залиште порожнім для автогенерації</sys:String>
+    <sys:String x:Key="Records.Validation.KeyRequired">Ключ не може бути порожнім</sys:String>
+    <sys:String x:Key="Records.Validation.KeyTooLong">Ключ перевищує 64 байти UTF-8</sys:String>
+    <sys:String x:Key="Records.Validation.DataTooLong">Дані перевищують 128 байт UTF-8</sys:String>
+
+    <sys:String x:Key="Import.Title">Імпорт даних</sys:String>
+    <sys:String x:Key="Import.OpenCSV">Відкрити CSV</sys:String>
+    <sys:String x:Key="Import.Generate">Генерувати тестові дані</sys:String>
+    <sys:String x:Key="Import.Count">Кількість записів</sys:String>
+    <sys:String x:Key="Import.GenerateBtn">Генерувати</sys:String>
+    <sys:String x:Key="Import.Cancel">Скасувати</sys:String>
+    <sys:String x:Key="Import.Preview">Попередній перегляд (перші 10 рядків)</sys:String>
+    <sys:String x:Key="Import.Progress">Оброблено</sys:String>
+    <sys:String x:Key="Import.Of">з</sys:String>
+    <sys:String x:Key="Import.Complete">Завершено</sys:String>
+    <sys:String x:Key="Import.Imported">Імпортовано</sys:String>
+    <sys:String x:Key="Import.Skipped">Пропущено (дублікати/помилки)</sys:String>
+
+    <sys:String x:Key="Log.Title">Транзакційний журнал</sys:String>
+    <sys:String x:Key="Log.ColTime">Час</sys:String>
+    <sys:String x:Key="Log.ColType">Тип</sys:String>
+    <sys:String x:Key="Log.ColId">Id запису</sys:String>
+    <sys:String x:Key="Log.ColDesc">Опис</sys:String>
+    <sys:String x:Key="Log.FilterAll">Всі операції</sys:String>
+    <sys:String x:Key="Log.Undo">Відмінити</sys:String>
+    <sys:String x:Key="Log.Redo">Повторити</sys:String>
+    <sys:String x:Key="Log.Clear">Очистити журнал</sys:String>
+    <sys:String x:Key="Log.ClearConfirm">Ви впевнені, що хочете очистити журнал?</sys:String>
+    <sys:String x:Key="Log.Insert">Вставка</sys:String>
+    <sys:String x:Key="Log.Delete">Видалення</sys:String>
+    <sys:String x:Key="Log.Update">Оновлення</sys:String>
+    <sys:String x:Key="Log.Search">Пошук</sys:String>
+
+    <sys:String x:Key="Snapshot.Title">Snapshot — збереження та завантаження</sys:String>
+    <sys:String x:Key="Snapshot.Save">Зберегти Snapshot</sys:String>
+    <sys:String x:Key="Snapshot.Load">Завантажити Snapshot</sys:String>
+    <sys:String x:Key="Snapshot.FilePath">Шлях до файлу</sys:String>
+    <sys:String x:Key="Snapshot.FileSize">Розмір файлу</sys:String>
+    <sys:String x:Key="Snapshot.CreatedAt">Дата створення</sys:String>
+    <sys:String x:Key="Snapshot.RecordCount">Кількість записів</sys:String>
+    <sys:String x:Key="Snapshot.Version">Версія формату</sys:String>
+    <sys:String x:Key="Snapshot.Integrity">Перевірка цілісності</sys:String>
+    <sys:String x:Key="Snapshot.Corrupted">Пошкоджено записів</sys:String>
+    <sys:String x:Key="Snapshot.Success">Snapshot збережено успішно</sys:String>
+    <sys:String x:Key="Snapshot.LoadSuccess">Snapshot завантажено успішно</sys:String>
+
+    <sys:String x:Key="Benchmark.Title">Аналіз продуктивності</sys:String>
+    <sys:String x:Key="Benchmark.Scenarios">Сценарії</sys:String>
+    <sys:String x:Key="Benchmark.BstVsLinear">Швидкий пошук vs Лінійний перебір</sys:String>
+    <sys:String x:Key="Benchmark.QuickSort">Швидке сортування</sys:String>
+    <sys:String x:Key="Benchmark.InterpolSearch">Інтерполяційний пошук</sys:String>
+    <sys:String x:Key="Benchmark.Sizes">Розміри N</sys:String>
+    <sys:String x:Key="Benchmark.Run">Запустити аналіз</sys:String>
+    <sys:String x:Key="Benchmark.OpenReport">Відкрити HTML-звіт</sys:String>
+    <sys:String x:Key="Benchmark.ColMethod">Метод</sys:String>
+    <sys:String x:Key="Benchmark.ColN">N</sys:String>
+    <sys:String x:Key="Benchmark.ColMean">Середній час</sys:String>
+    <sys:String x:Key="Benchmark.ColStdDev">Станд. відхилення</sys:String>
+    <sys:String x:Key="Benchmark.ColAlloc">Алокації</sys:String>
+    <sys:String x:Key="Benchmark.Running">Виконується аналіз...</sys:String>
+    <sys:String x:Key="Benchmark.Warning">Аналіз триває кілька хвилин</sys:String>
+
+    <sys:String x:Key="Common.Yes">Так</sys:String>
+    <sys:String x:Key="Common.No">Ні</sys:String>
+    <sys:String x:Key="Common.OK">OK</sys:String>
+    <sys:String x:Key="Common.Cancel">Скасувати</sys:String>
+    <sys:String x:Key="Common.Error">Помилка</sys:String>
+    <sys:String x:Key="Common.Success">Успішно</sys:String>
+    <sys:String x:Key="Common.Active">Активний</sys:String>
+    <sys:String x:Key="Common.Deleted">Видалений</sys:String>
+    <sys:String x:Key="Common.Locked">Заблокований</sys:String>
+    <sys:String x:Key="Common.ms">мс</sys:String>
+    <sys:String x:Key="Common.μs">мкс</sys:String>
+    <sys:String x:Key="Common.Loading">Завантаження...</sys:String>
+    <sys:String x:Key="Common.Saving">Збереження...</sys:String>
+    <sys:String x:Key="Common.NoData">Немає даних</sys:String>
+
+</ResourceDictionary>

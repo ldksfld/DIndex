@@ -1,0 +1,115 @@
+<Window x:Class="DIndex.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:DIndex.App.ViewModels"
+        xmlns:views="clr-namespace:DIndex.App.Views"
+        xmlns:pages="clr-namespace:DIndex.App.Views.Pages"
+        Title="{StaticResource App.Title}"
+        Height="800" Width="1280"
+        MinHeight="720" MinWidth="1024"
+        Background="{StaticResource BackgroundBrush}"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:DashboardViewModel}">
+            <pages:DashboardPage/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SearchViewModel}">
+            <pages:SearchPage/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:RecordsViewModel}">
+            <pages:RecordsPage/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ImportViewModel}">
+            <pages:ImportPage/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:LogViewModel}">
+            <pages:LogPage/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SnapshotViewModel}">
+            <pages:SnapshotPage/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:BenchmarkViewModel}">
+            <pages:BenchmarkPage/>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="{StaticResource SurfaceBrush}"
+                BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,0,1,0">
+            <DockPanel>
+                <Border DockPanel.Dock="Top" Padding="16,20,16,16"
+                        BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,0,0,1">
+                    <StackPanel>
+                        <TextBlock Text="D-Index" FontFamily="Segoe UI" FontSize="24"
+                                   FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}"/>
+                        <TextBlock Text="Управління даними" FontSize="11"
+                                   Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <StackPanel DockPanel.Dock="Top" Margin="0,8">
+                    <Button Style="{StaticResource NavButton}"
+                            Command="{Binding NavigateDashboardCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="📊" FontSize="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="{StaticResource Nav.Dashboard}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource NavButton}"
+                            Command="{Binding NavigateSearchCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="🔍" FontSize="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="{StaticResource Nav.Search}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource NavButton}"
+                            Command="{Binding NavigateRecordsCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="📝" FontSize="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="{StaticResource Nav.Records}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource NavButton}"
+                            Command="{Binding NavigateImportCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="📥" FontSize="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="{StaticResource Nav.Import}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource NavButton}"
+                            Command="{Binding NavigateLogCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="📋" FontSize="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="{StaticResource Nav.Log}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource NavButton}"
+                            Command="{Binding NavigateSnapshotCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="💾" FontSize="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="{StaticResource Nav.Snapshot}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource NavButton}"
+                            Command="{Binding NavigateBenchmarkCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="⚡" FontSize="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="{StaticResource Nav.Benchmark}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+            </DockPanel>
+        </Border>
+
+        <ContentControl Grid.Column="1"
+                        Content="{Binding CurrentPage}"
+                        Focusable="False"/>
+    </Grid>
+</Window>

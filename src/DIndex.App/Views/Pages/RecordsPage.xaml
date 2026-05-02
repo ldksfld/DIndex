@@ -1,0 +1,132 @@
+<UserControl x:Class="DIndex.App.Views.Pages.RecordsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="{StaticResource BackgroundBrush}">
+
+    <Grid Margin="32,24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="{StaticResource Records.Title}" Style="{StaticResource TitleLarge}" Margin="0,0,0,20"/>
+
+        <Border Grid.Row="1" Background="{StaticResource SurfaceBrush}" CornerRadius="10" Padding="20" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="{StaticResource Records.AddNew}" Style="{StaticResource TitleSmall}" Margin="0,0,0,12"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" Margin="0,0,8,0"
+                             Text="{Binding NewId, UpdateSourceTrigger=PropertyChanged}"
+                             Tag="Id (auto)"/>
+                    <TextBox Grid.Column="1" Margin="0,0,8,0"
+                             Text="{Binding NewKey, UpdateSourceTrigger=PropertyChanged}"
+                             Tag="Ключ (Email/IP/Username)"/>
+                    <TextBox Grid.Column="2" Margin="0,0,8,0"
+                             Text="{Binding NewData, UpdateSourceTrigger=PropertyChanged}"
+                             Tag="Дані (до 128 байт)"/>
+                    <Button Grid.Column="3" Style="{StaticResource PrimaryButton}"
+                            Content="{StaticResource Records.Add}"
+                            Command="{Binding AddCommand}" MinWidth="100"/>
+                </Grid>
+                <TextBlock Text="{Binding ValidationError}" Foreground="{StaticResource ErrorBrush}"
+                           FontSize="12" Margin="0,8,0,0"
+                           Visibility="{Binding HasValidationError, Converter={StaticResource BoolToVis}}"/>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="2" Background="{StaticResource SurfaceBrush}" CornerRadius="10">
+            <DockPanel>
+                <Border DockPanel.Dock="Top" Padding="16,12" BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,0,0,1">
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                            <Button Style="{StaticResource SecondaryButton}" Margin="0,0,8,0"
+                                    Content="Оновити" Command="{Binding LoadPageCommand}"/>
+                            <Button Style="{StaticResource DangerButton}" Margin="0,0,8,0"
+                                    Content="{StaticResource Records.Delete}"
+                                    Command="{Binding DeleteSelectedCommand}"/>
+                            <Button Style="{StaticResource DangerButton}"
+                                    Content="{StaticResource Records.ClearAll}"
+                                    Command="{Binding ClearAllCommand}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Всі записи" Style="{StaticResource TitleSmall}"/>
+                            <TextBlock Margin="12,0,0,0" Foreground="{StaticResource TextMutedBrush}" VerticalAlignment="Center">
+                                <Run Text="{Binding TotalShown, Mode=OneWay}"/><Run Text=" записів"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </DockPanel>
+                </Border>
+
+                <ProgressBar DockPanel.Dock="Top" IsIndeterminate="True" Height="3"
+                             Visibility="{Binding IsBusy, Converter={StaticResource BoolToVis}}"/>
+
+                <DataGrid ItemsSource="{Binding Records}"
+                          SelectedItem="{Binding SelectedRecord}"
+                          AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="100"/>
+                        <DataGridTextColumn Header="Ключ" Binding="{Binding Key}" Width="220"/>
+                        <DataGridTextColumn Header="Дані" Width="*">
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="Data" Converter="{StaticResource Truncate}" ConverterParameter="48"/>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Час"
+                                            Binding="{Binding Timestamp, Converter={StaticResource TsToStr}}" Width="160"/>
+                        <DataGridTextColumn Header="Статус"
+                                            Binding="{Binding Flags, Converter={StaticResource FlagsToStr}}" Width="100"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </Border>
+
+        <Border Grid.Row="3" Background="{StaticResource SurfaceBrush}" CornerRadius="10" Padding="12,8" Margin="0,4,0,0">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                    <Button Style="{StaticResource SecondaryButton}" Margin="0,0,6,0"
+                            Content="◀" Command="{Binding PreviousPageCommand}" MinWidth="36"/>
+                    <Button Style="{StaticResource SecondaryButton}"
+                            Content="▶" Command="{Binding NextPageCommand}" MinWidth="36"/>
+                </StackPanel>
+                <TextBlock Text="{Binding PageInfo}" VerticalAlignment="Center"
+                           Foreground="{StaticResource TextMutedBrush}" FontSize="13"/>
+            </DockPanel>
+        </Border>
+
+        <Border Grid.Row="4" Background="{StaticResource SurfaceBrush}" CornerRadius="10" Padding="16,12" Margin="0,4,0,0"
+                Visibility="{Binding SelectedRecord, Converter={StaticResource NullToVis}}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="0,0,12,0"
+                           Foreground="{StaticResource TextMutedBrush}" FontSize="13">
+                    <Run Text="Редагувати дані Id="/>
+                    <Run Text="{Binding SelectedRecord.Id, Mode=OneWay}"/>
+                    <Run Text=":"/>
+                </TextBlock>
+                <TextBox Grid.Column="1" Margin="0,0,12,0"
+                         Text="{Binding EditData, UpdateSourceTrigger=PropertyChanged}"
+                         Tag="{StaticResource Records.Update}"/>
+                <Button Grid.Column="2" Style="{StaticResource PrimaryButton}"
+                        Content="{StaticResource Records.Update}"
+                        Command="{Binding UpdateSelectedCommand}" MinWidth="100"/>
+            </Grid>
+        </Border>
+
+        <TextBlock Grid.Row="5" Text="{Binding StatusMessage}" Style="{StaticResource BodyText}"
+                   Margin="0,8,0,0" Foreground="{StaticResource TextMutedBrush}"/>
+    </Grid>
+</UserControl>

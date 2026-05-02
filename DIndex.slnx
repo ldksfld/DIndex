@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/DIndex.App/DIndex.App.csproj" />
+    <Project Path="src/DIndex.Benchmarks/DIndex.Benchmarks.csproj" />
+    <Project Path="src/DIndex.Core/DIndex.Core.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/DIndex.Core.Tests/DIndex.Core.Tests.csproj" />
+  </Folder>
+</Solution>

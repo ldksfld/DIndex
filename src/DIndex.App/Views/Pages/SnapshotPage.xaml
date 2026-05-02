@@ -1,0 +1,98 @@
+<UserControl x:Class="DIndex.App.Views.Pages.SnapshotPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="{StaticResource BackgroundBrush}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="32,24">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="{StaticResource Snapshot.Title}" Style="{StaticResource TitleLarge}" Margin="0,0,0,24"/>
+
+            <Border Grid.Row="1" Background="{StaticResource SurfaceBrush}" CornerRadius="10" Padding="20" Margin="0,0,0,16">
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource PrimaryButton}" Margin="0,0,12,0"
+                            Content="{StaticResource Snapshot.Save}"
+                            Command="{Binding SaveCommand}"
+                            IsEnabled="{Binding IsBusy, Converter={StaticResource BoolNegate}}"/>
+                    <Button Style="{StaticResource SecondaryButton}"
+                            Content="{StaticResource Snapshot.Load}"
+                            Command="{Binding LoadCommand}"
+                            IsEnabled="{Binding IsBusy, Converter={StaticResource BoolNegate}}"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="2" Background="{StaticResource SurfaceBrush}" CornerRadius="10" Padding="20" Margin="0,0,0,16"
+                    Visibility="{Binding IsBusy, Converter={StaticResource BoolToVis}}">
+                <StackPanel>
+                    <TextBlock Text="Виконується операція..." Style="{StaticResource BodyText}" Margin="0,0,0,8"/>
+                    <ProgressBar Value="{Binding Progress}" Maximum="100" Height="6"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="3" Background="{StaticResource SurfaceBrush}" CornerRadius="10" Padding="20" Margin="0,0,0,16"
+                    Visibility="{Binding HasInfo, Converter={StaticResource BoolToVis}}">
+                <StackPanel>
+                    <TextBlock Text="Інформація про Snapshot" Style="{StaticResource TitleSmall}" Margin="0,0,0,16"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="{StaticResource Snapshot.FilePath}"
+                                   Foreground="{StaticResource TextMutedBrush}" Margin="0,4"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Info.FilePath}"
+                                   Style="{StaticResource MonoText}" Margin="0,4" TextWrapping="Wrap"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{StaticResource Snapshot.FileSize}"
+                                   Foreground="{StaticResource TextMutedBrush}" Margin="0,4"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource MonoText}" Margin="0,4">
+                            <Run Text="{Binding Info.FileSize, Converter={StaticResource FileSize}, Mode=OneWay}"/>
+                        </TextBlock>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="{StaticResource Snapshot.CreatedAt}"
+                                   Foreground="{StaticResource TextMutedBrush}" Margin="0,4"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource MonoText}" Margin="0,4"
+                                   Text="{Binding Info.CreatedAt}"/>
+
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="{StaticResource Snapshot.RecordCount}"
+                                   Foreground="{StaticResource TextMutedBrush}" Margin="0,4"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource MonoText}" Margin="0,4"
+                                   Foreground="{StaticResource SuccessBrush}" Text="{Binding Info.RecordCount}"/>
+
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="{StaticResource Snapshot.Version}"
+                                   Foreground="{StaticResource TextMutedBrush}" Margin="0,4"/>
+                        <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource MonoText}" Margin="0,4"
+                                   Text="{Binding Info.FormatVersion}"/>
+
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="{StaticResource Snapshot.Corrupted}"
+                                   Foreground="{StaticResource TextMutedBrush}" Margin="0,4"/>
+                        <TextBlock Grid.Row="5" Grid.Column="1" Style="{StaticResource MonoText}" Margin="0,4"
+                                   Foreground="{StaticResource ErrorBrush}" Text="{Binding CorruptedCount}"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="4" Background="{StaticResource SurfaceBrush}" CornerRadius="10" Padding="16"
+                    Visibility="{Binding ResultText, Converter={StaticResource NullToVis}}">
+                <TextBlock Text="{Binding ResultText}" Foreground="{StaticResource SuccessBrush}"
+                           FontFamily="Segoe UI" FontSize="13"/>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</UserControl>
